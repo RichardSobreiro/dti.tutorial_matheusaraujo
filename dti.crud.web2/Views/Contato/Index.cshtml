@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="../../Scripts/Grupo/Contato.js" type="text/javascript"></script>
+<link href="../../Content/Grupo/Grupo.css" rel="stylesheet" type="text/css"/>
+
+<div class="g-row">
+
+    <div class="g-col-6">
+
+        <h3>Lista de Contatos</h3>
+
+            <div id="divBuscar">
+                Buscar <input type="text" id="inputFiltroContatos">
+                <button id="botaoFiltroContatos">Filtrar</button>
+            </div>
+                
+            <hr />
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>ID do Grupo</td>
+                        <td>Opções</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <button id="botaoabririnserirContato">Novo Contato</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+    </div>
+</div>
+

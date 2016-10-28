@@ -1,0 +1,63 @@
+﻿@{  
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="../../Scripts/Grupo/Grupo.js" type="text/javascript"></script>
+<link href="../../Content/Grupo/Grupo.css" rel="stylesheet" type="text/css" />
+
+<div class="g-row">
+
+    <div class="g-col-6">
+
+        <h3>Lista de Grupos</h3>
+
+        <div id="divBuscar">
+            Buscar <input type="text" id="inputFiltroGrupo" />
+            <button id="botaoFiltroGrupo">Filtrar</button>
+        </div>
+
+        <hr />
+
+        <table id="tabelaGrupos">
+            <thead>
+                <tr>
+                    <td>Grupo</td>
+                    <td>Opções</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <button id="botaoAbrirInserirGrupo">Novo</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+    <div class="g-col-6" style="display:none" id="divEditarGrupo">
+        <div class="form">
+            <h3>Editar Grupo</h3>
+            <input type="hidden" id="editarGrupoId" />
+            Nome: <input type="text" id="editarGrupoNome" />
+            <hr />
+            <button id="botaoEditarGrupo">Editar</button>
+        </div>
+    </div>
+
+    <div class="g-col-6" style="display:none" id="divInserirGrupo">
+        <div class="form">
+            <h3>Inserir Grupo</h3>
+            <input type="hidden" id="inserirGrupoId" />
+            Nome: <input type="text" id="inserirGrupoNome" />
+            <hr />
+            <button id="botaoInserirGrupo">Inserir</button>
+        </div>
+    </div>
+
+</div>
+
+

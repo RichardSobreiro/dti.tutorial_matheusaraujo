@@ -15,5 +15,10 @@ namespace dti.crud.executor
         {
             return ContatoRepositorio.ListarContatos();
         }
+
+        public static void InserirContato(string nome)
+        {
+            ContatoRepositorio.InserirContato(nome);
+        }
     }
 }

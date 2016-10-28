@@ -15,14 +15,24 @@ namespace dti.crud.repositorio
 
         private const string LISTAR_CONTATOS = @"
             SELECT 
-                c.id
-                c.id_grupo
+                c.id,
+                c.id_grupo,
                 c.nome
             FROM
                 contato c
             ORDER BY
                 c.nome
             ";
+
+        private const string INSERIR_CONTATO = @"
+            INSERT INTO contato (nome)
+            VALUES (@nome)
+        ";
+
+        private const string EXCLUIR_CONTATO = @"
+            DELETE contato 
+            WHERE id = @id
+        ";
 
         #endregion
 
@@ -66,6 +76,24 @@ namespace dti.crud.repositorio
             }
 
             return listaContatos;
+        }
+
+        public static void InserirContato(string nome)
+        {
+            SqlConnection conexao = ConexaoBanco.CriarConexao();
+
+            try
+            {
+                conexao.Open();
+                SqlCommand comando = new SqlCommand(INSERIR_CONTATO, conexao);
+                comando.Parameters.AddWithValue("nome", nome);
+
+                comando.ExecuteNonQuery();  
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         #endregion

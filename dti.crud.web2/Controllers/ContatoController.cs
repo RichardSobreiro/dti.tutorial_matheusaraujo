@@ -22,5 +22,10 @@ namespace dti.crud.web2.Controllers
             List<Contato> listaContatos = ContatoExecutor.ListarContatos();
             return Json(listaContatos, JsonRequestBehavior.AllowGet);
         }
+
+        public void InserirContato(string nome)
+        {
+            ContatoExecutor.InserirContato(nome);
+        }
     }
 }

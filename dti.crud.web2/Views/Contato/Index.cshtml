@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="../../Scripts/Grupo/Contato.js" type="text/javascript"></script>
+<script src="../../Scripts/Contato/Contato.js" type="text/javascript"></script>
 <link href="../../Content/Grupo/Grupo.css" rel="stylesheet" type="text/css"/>
 
 <div class="g-row">
@@ -17,7 +17,7 @@
             </div>
                 
             <hr />
-            <table class="tabela">
+            <table id="tabelaContatos">
                 <thead>
                     <tr>
                         <td>Nome</td>
@@ -30,11 +30,22 @@
                 <tfoot>
                     <tr>
                         <td colspan="3">
-                            <button id="botaoabririnserirContato">Novo Contato</button>
+                            <button id="botaoAbrirInserirContato">Novo Contato</button>
                         </td>
                     </tr>
                 </tfoot>
             </table>
     </div>
+
+    <div class="g-col-6" style="display:none" id="divInserirContato">
+        <div class="form">
+            <h3>Inserir Contato</h3>
+            <input type="hidden" id="inserirContatoId"/>
+            Nome: <input type="text" id="inserirContatoNome" />
+            <hr />
+            <button id="botaoInserirContato">Inserir</button>
+        </div>
+    </div>
+
 </div>
 

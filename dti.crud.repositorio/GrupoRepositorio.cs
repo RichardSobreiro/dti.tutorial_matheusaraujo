@@ -187,6 +187,7 @@ namespace dti.crud.repositorio
             }
             catch (Exception ex)
             {
+
             }
         }
 

@@ -2,7 +2,7 @@
     'use strict';
 
     $(document).ready(function () {
-
+        
         listarContatos();
 
         $('#botaoAbrirInserirContato').on('click', function () {
@@ -13,38 +13,45 @@
             inserirContato();
         });
 
+        $('#botaoFiltroContatos').on('click', function () {
+            listarContatoPorNome();
+        });
+
     });
 
-    function listarContatos() {
+    function listarContatos() { 
+
         $.ajax({
             type: 'GET',
             url: '/Contato/ListarContatos',
             success: listarContatosRetorno,
             error: function(jqXHR,error, errorThrown) {  
-                if(jqXHR.status&&jqXHR.status==400){
+                if (jqXHR.status&&jqXHR.status == 400) {
                     alert(jqXHR.responseText); 
-                }else{
-                    alert("Something went wrong");
+                } else {
+                    alert("Erro de comunicação com o servidor!");
                 }
             }
         });
+
     };
 
     function listarContatosRetorno(lista) {
+
+        if (lista == null) {
+            alert("Lista retornada vazia!");
+            return;
+        }
         
         var _tabela = $('#tabelaContatos tbody');
-
         _tabela.empty();
 
         for (var i = 0; i < lista.length; i++) {
-
+            
             var _tr = $('<tr></tr>');
 
             var _td = $('<td></td>');
             _td.text(lista[i].nome);
-            
-            var _td_id_grupo = $('<td></td>');
-            _td_id_grupo.text(lista[i].id_grupo);
 
             var _tdOpcoes = $('<td></td>');
             
@@ -62,12 +69,20 @@
                 abrirExcluirContato(this);
             });
 
+            var _linkDetalhes = $('<a></a>');
+            _linkDetalhes.text('Detalhes');
+            _linkDetalhes.attr('data-id', lista[i].id);
+            _linkDetalhes.on('click', function () {
+                abrirDetalhesContato(this);
+            });
+
             _tdOpcoes.append(_linkEditar);
+            _tdOpcoes.append('&nbsp;');
+            _tdOpcoes.append(_linkDetalhes);
             _tdOpcoes.append('&nbsp;');
             _tdOpcoes.append(_linkExcluir);
 
             _tr.append(_td);
-            _tr.append(_td_id_grupo);
             _tr.append(_tdOpcoes);
 
             _tabela.append(_tr);
@@ -81,19 +96,40 @@
 
     function inserirContato() {
         var _parametros = {
-            nome: $('#inserirContatoNome').val()
+            nome: $('#inserirContatoNome').val(),
+            nome_grupo: $('#inserirContatoNomeGrupo').val(),
+            tipo: $('#inserirContatoTipo').val(),
+            telefone: $('#inserirContatoTelefone').val()
         };
 
         $.ajax({
             type: 'GET',
             url: '/Contato/InserirContato',
             data: _parametros,
-            success: inserirContatoRetorno
+            success: inserirContatoRetorno,
+            error: function(jqXHR,error, errorThrown) {  
+            if (jqXHR.status&&jqXHR.status == 400) {
+                alert(jqXHR.responseText); 
+            } else {
+                alert("Erro de comunicação com o servidor!");
+            }
+        }
         });
     };
 
-    function inserirContatoRetorno() {
+    function inserirContatoRetorno(erro) {
+
+        var mensagem_retorno = new String(erro.mensagem);
+        
+        if (mensagem_retorno.localeCompare("OK") != 0) alert(erro.mensagem);
+
+        $('#inserirContatoNome').val('');
+        $('#inserirContatoNomeGrupo').val('');
+        $('#inserirContatoTipo').val('');
+        $('#inserirContatoTelefone').val('');
+
         $('#divInserirContato').hide();
+
         listarContatos();
     };
 
@@ -108,6 +144,30 @@
 
     function abrirExcluirContato(_this) {
         alert("Abrir excluir contato!");
+    };
+
+    function abrirDetalhesContato(_this) {
+        alert("Abrir detalhes contato!");
+    };
+
+    function listarContatoPorNome() {
+        var _parametros = {
+            nome: $('#inputFiltroContatos').val()
+        };
+
+        $.ajax({
+            type: 'GET',
+            url: '/Contato/ListarContatosPorNome',
+            data: _parametros,
+            success: listarContatosRetorno,
+            error: function (jqXHR, error, errorThrown) {
+                if (jqXHR.status && jqXHR.status == 400) {
+                    alert(jqXHR.responseText);
+                } else {
+                    alert("Erro de comunicação com o servidor!");
+                }
+            }
+        });
     };
 
 }());

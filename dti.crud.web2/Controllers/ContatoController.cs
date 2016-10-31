@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-using dti.crud.dto;
+﻿using dti.crud.dto;
 using dti.crud.executor;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace dti.crud.web2.Controllers
 {
@@ -23,9 +19,16 @@ namespace dti.crud.web2.Controllers
             return Json(listaContatos, JsonRequestBehavior.AllowGet);
         }
 
-        public void InserirContato(string nome)
+        public JsonResult InserirContato(string nome, string nome_grupo, string tipo, string telefone)
         {
-            ContatoExecutor.InserirContato(nome);
+            Erro erro = ContatoExecutor.InserirContato(nome, nome_grupo, tipo, telefone);
+            return Json(erro, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ListarContatosPorNome(string nome)
+        {
+            List<Contato> listaContatos = ContatoExecutor.ListarContatosPorNome(nome);
+            return Json(listaContatos, JsonRequestBehavior.AllowGet);
         }
     }
 }

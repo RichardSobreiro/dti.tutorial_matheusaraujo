@@ -99,6 +99,7 @@ namespace dti.crud.repositorio
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception caught: " + ex.Message);
                 return null;
             }
 
@@ -127,6 +128,7 @@ namespace dti.crud.repositorio
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception caught: " + ex.Message);
                 return null;
             }
 
@@ -151,6 +153,7 @@ namespace dti.crud.repositorio
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception caught: " + ex.Message);
                 return null;
             }
         }
@@ -169,7 +172,8 @@ namespace dti.crud.repositorio
                 comando.ExecuteNonQuery();
             }
             catch (Exception ex)
-            {   
+            {
+                Console.WriteLine("Exception caught: " + ex.Message);
             }
         }
 
@@ -187,7 +191,7 @@ namespace dti.crud.repositorio
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("Exception caught: " + ex.Message);
             }
         }
 
@@ -205,6 +209,7 @@ namespace dti.crud.repositorio
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception caught: " + ex.Message);
             }
         }
 

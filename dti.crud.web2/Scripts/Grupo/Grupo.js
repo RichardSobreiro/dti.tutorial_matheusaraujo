@@ -35,7 +35,7 @@
         var _tabela = $('#tabelaGrupos tbody');
 
         _tabela.empty();
-
+        alert("Comprimento da lista: " + lista.length);
         for (var i = 0; i < lista.length; i++) {
 
             var _tr = $('<tr></tr>');

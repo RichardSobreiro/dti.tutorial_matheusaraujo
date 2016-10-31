@@ -21,7 +21,6 @@
                 <thead>
                     <tr>
                         <td>Nome</td>
-                        <td>ID do Grupo</td>
                         <td>Opções</td>
                     </tr>
                 </thead>
@@ -39,11 +38,41 @@
 
     <div class="g-col-6" style="display:none" id="divInserirContato">
         <div class="form">
-            <h3>Inserir Contato</h3>
             <input type="hidden" id="inserirContatoId"/>
-            Nome: <input type="text" id="inserirContatoNome" />
-            <hr />
-            <button id="botaoInserirContato">Inserir</button>
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="3">
+                            <h3>Inserir Contato</h3>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nome: </td>
+                        <td><input type="text" id="inserirContatoNome" /></td>
+                    </tr>
+                    <tr>
+                        <td>Nome do Grupo: </td>
+                        <td><input type="text" id="inserirContatoNomeGrupo" /></td>
+                    </tr>
+                    <tr>
+                        <td>Tipo: </td>
+                        <td><input type="text" id="inserirContatoTipo" /></td>
+                    </tr>
+                    <tr>
+                        <td>Telefone: </td>
+                        <td><input type="text" id="inserirContatoTelefone" /></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <button id="botaoInserirContato">Inserir</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 

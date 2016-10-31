@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contato.cs" />
+    <Compile Include="Erro.cs" />
     <Compile Include="Grupo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

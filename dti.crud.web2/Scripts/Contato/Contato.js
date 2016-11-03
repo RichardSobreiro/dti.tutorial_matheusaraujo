@@ -8,6 +8,10 @@
         $('#botaoAbrirInserirContato').on('click', function () {
             abrirInserirContato();
         });
+
+        $('#botaoEditarContatoNomeCancelar').on('click', function () {
+            $('#divEditarContatoNome').hide();
+        });
         
         $('#botaoInserirContato').on('click', function () {
             inserirContato();
@@ -15,6 +19,10 @@
 
         $('#botaoFiltroContatos').on('click', function () {
             listarContatoPorNome();
+        });
+
+        $('#botaoEditarContatoNome').on('click', function () {
+            editarContatoNome();
         });
 
     });
@@ -42,24 +50,24 @@
             alert("Lista retornada vazia!");
             return;
         }
-        
+
         var _tabela = $('#tabelaContatos tbody');
         _tabela.empty();
 
         for (var i = 0; i < lista.length; i++) {
-            
+
             var _tr = $('<tr></tr>');
 
             var _td = $('<td></td>');
             _td.text(lista[i].nome);
 
             var _tdOpcoes = $('<td></td>');
-            
+
             var _linkEditar = $('<a></a>');
             _linkEditar.text('Editar');
             _linkEditar.attr('data-id', lista[i].id);
             _linkEditar.on('click', function () {
-                abrirEditarContato(this);
+                abrirEditarContatoNome(this);
             });
 
             var _linkExcluir = $('<a></a>');
@@ -88,10 +96,27 @@
             _tabela.append(_tr);
         }
 
-    }
+    };
 
     function abrirInserirContato() {
         $('#divInserirContato').show();
+    };
+
+    function abrirEditarContatoNome(_this) {
+        $('#editarContatoId').val($(_this).attr('data-id'));
+        $('#divEditarContatoNome').show();
+    };
+
+    function abrirExcluirContato(_this) {
+        alert("Abrir excluir contato!");
+    };
+
+    function abrirDetalhesContato(_this) {
+        alert("Abrir detalhes contato!");
+    };
+
+    function obterContato(_id) {
+        alert("Abrir obter contato!");
     };
 
     function inserirContato() {
@@ -133,23 +158,6 @@
         listarContatos();
     };
 
-    function abrirEditarContato(_this) {
-        obterContato($(_this).attr('data-id'));
-        alert("Abrir editar contato!");
-    };
-
-    function obterContato(_id) {
-        alert("Abrir obter contato!");
-    };
-
-    function abrirExcluirContato(_this) {
-        alert("Abrir excluir contato!");
-    };
-
-    function abrirDetalhesContato(_this) {
-        alert("Abrir detalhes contato!");
-    };
-
     function listarContatoPorNome() {
         var _parametros = {
             nome: $('#inputFiltroContatos').val()
@@ -170,4 +178,39 @@
         });
     };
 
+    function editarContatoNome() {
+        var _parametros = {
+            id: $('#editarContatoId').val(),
+            nome: $('#editarContatoNome').val()
+        };
+
+        $.ajax({
+            type: 'GET',
+            url: '/Contato/EditarContatoNome',
+            data: _parametros,
+            success: editarContatoNomeRetorno
+        });
+    };
+
+    function editarContatoNomeRetorno(erro) {
+        $('#divEditarContatoNome').hide();
+
+        var mensagem_retorno = new String(erro.mensagem);
+
+        if (mensagem_retorno.localeCompare("OK") != 0) {
+            alert(erro.mensagem);
+        } else {
+            listarContatos();
+        }
+    };
+
+    function editarContatoTelefoneRetorno(erro) {
+        $('#divEditarContatoTelefone').hide();
+
+        var mensagem_retorno = new String(erro.mensagem);
+
+        if (mensagem_retorno.localeCompare("OK") != 0) {
+            alert(erro.mensagem);
+        } 
+    };
 }());

@@ -89,6 +89,12 @@ namespace dti.crud.repositorio
             WHERE id = @id
         ";
 
+        private const string EDITAR_TELEFONE_CONTATO = @"
+            UPDATE contato_registro
+            SET telefone = @telefone
+            WHERE id_contato = @id_contato
+        ";
+
         private const string EXCLUIR_CONTATO = @"
             DELETE contato 
             WHERE id = @id
@@ -347,6 +353,28 @@ namespace dti.crud.repositorio
                 SqlCommand comando = new SqlCommand(EDITAR_NOME_CONTATO, conexao);
                 comando.Parameters.AddWithValue("nome", nome);
                 comando.Parameters.AddWithValue("id", id);
+                num_linhas_afetadas = comando.ExecuteNonQuery();
+
+                return num_linhas_afetadas;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception caught: " + ex.Message);
+                return -1;
+            }
+        }
+
+        public static int EditarContatoNumero(int id_contato, string telefone)
+        {
+            int num_linhas_afetadas = 0;
+            SqlConnection conexao = ConexaoBanco.CriarConexao();
+
+            try
+            {
+                conexao.Open();
+                SqlCommand comando = new SqlCommand(EDITAR_TELEFONE_CONTATO, conexao);
+                comando.Parameters.AddWithValue("telefone", telefone);
+                comando.Parameters.AddWithValue("id_contato", id_contato);
                 num_linhas_afetadas = comando.ExecuteNonQuery();
 
                 return num_linhas_afetadas;

@@ -30,5 +30,17 @@ namespace dti.crud.web2.Controllers
             List<Contato> listaContatos = ContatoExecutor.ListarContatosPorNome(nome);
             return Json(listaContatos, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult EditarContatoNome(int id, string nome)
+        {
+            Erro erro = ContatoExecutor.EditarContatoNome(id, nome);
+            return Json(erro, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EditarContatoTelefone(int id_contato, string telefone)
+        {
+            Erro erro = ContatoExecutor.EditarContatoNome(id_contato, telefone);
+            return Json(erro, JsonRequestBehavior.AllowGet);
+        }
     }
 }

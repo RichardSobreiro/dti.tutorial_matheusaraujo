@@ -68,13 +68,30 @@ namespace dti.crud.executor
             Erro erro = new Erro();
             int num_linhas_afetadas = ContatoRepositorio.EditarContatoNome(id, nome);
 
-            if(num_linhas_afetadas == 0)
+            if(num_linhas_afetadas != 1)
             {
-                erro.mensagem = "Erro na alteração do nome! (banco)";
+                erro.mensagem = "Erro na alteração do nome!";
             }
-            else if (num_linhas_afetadas == 1)
+            else
             {
+                erro.mensagem = "OK";
+            }
 
+            return erro;
+        }
+
+        public static Erro EditarContatoTelefone(int id_contato, string telefone)
+        {
+            Erro erro = new Erro();
+            int num_linhas_afetadas = ContatoRepositorio.EditarContatoNumero(id_contato, telefone);
+
+            if (num_linhas_afetadas != 1)
+            {
+                erro.mensagem = "Erro na alteração do nome!";
+            }
+            else
+            {
+                erro.mensagem = "OK";
             }
 
             return erro;
